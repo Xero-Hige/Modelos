@@ -3,7 +3,7 @@ language: bash
 before_script:
   - sudo apt-get update
   - sudo apt-get install -y libglpk* glpk-utils
-  - bash ./installGLPK.sh
+  - sudo bash ./installGLPK.sh
 
 script:
-  - echo "hola"
+  - glpsol --version
