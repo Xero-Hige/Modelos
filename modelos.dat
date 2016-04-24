@@ -1,0 +1,9 @@
+# Data Section
+data;
+
+param PORC_MAX_ESPALDA_COMPLETO := 0.7;
+param PORC_MIN_CRAWL_BRAZADA := 0.1;
+param ALFA := 1.0101010101010101;
+param v := 0.01;
+param V := 9999999;
+param OLIMP := 100;
