@@ -4,6 +4,7 @@ param PORC_MIN_CRAWL_BRAZADA;
 param ALFA;
 param v;
 param V;
+param OLIMP;
 
 #Las ciudades del viajante
 set INTERVALOS;
@@ -60,8 +61,27 @@ var Y_s_c_1 >= 0, binary;
 var Y_s_c_2 >= 0, binary;
 var Y_s_c_3 >= 0, binary;
 
+var T >= 0;
+var T_1 >= 0;
+var T_2 >= 0;
+var T_3 >= 0;
+
+var T_f_1 >= 0;
+var T_f_2 >= 0;
+var T_f_3 >= 0;
+var T_n_1 >= 0;
+var T_n_2 >= 0;
+var T_n_3 >= 0;
+
+var T_e_1 >= 0;
+var T_e_2 >= 0;
+var T_e_3 >= 0;
+var T_c_1 >= 0;
+var T_c_2 >= 0;
+var T_c_3 >= 0;
+
 /* Definicion del funcional */
-/*minimize z: T;*/
+minimize z: T;
 
 /* Restricciones */
 
@@ -175,5 +195,49 @@ s.t. aumentoEfiCrawlDosEspTresMax: Y_s_c_2 + Y_s_e_3 <= 1 + Y_f_3_e;
 s.t. aumentoEfiTresMin: Y_f_3_c + Y_f_3_e >= Y_f_3;
 s.t. aumentoEfiTresMax: Y_f_3_c + Y_f_3_e <= 2 * Y_f_3;
 s.t. bivalenteEfiTres: Y_f_3_c + Y_f_3_e <= 1;
+
+/* Fondos disponibles */
+s.t. presupuestoDiario: T * 500 + OLIMP <= 2000;
+
+/* Tiempo y aumento de eficiencia */
+s.t. tiempoInicial: T_f_1 = 0;
+s.t. tiempoTotalIntervalo: T = T_1 + T_2 + T_3;
+
+/* Tiempos por intervalo normal y eficiente */
+s.t. tiempoUnoNormalEficiente: T_1 = T_n_1 + T_f_1;
+s.t. tiempoDosNormalEficiente: T_2 = T_n_2 + T_f_2;
+s.t. tiempoTresNormalEficiente: T_3 = T_n_3 + T_f_3;
+
+/* Tiempo espalda por intevalo */
+s.t. tiempoEspaldaUno: T_e_1 = (E_c_1 * 1/3600 + E_b_1 * 1.25/3600 + E_p_1 * 1.3 / 3600 ) * ALFA;
+s.t. tiempoEspaldaDos: T_e_2 = (E_c_2 * 1/3600 + E_b_2 * 1.25/3600 + E_p_2 * 1.3 / 3600 ) * ALFA;
+s.t. tiempoEspaldaTres: T_e_3 = (E_c_3 * 1/3600 + E_b_3 * 1.25/3600 + E_p_3 * 1.3 / 3600 ) * ALFA;
+
+s.t. tiempoCrawlUno: T_c_1 = (C_c_1 * 0.5/3600 + C_b_1 * 0.6/3600 + C_p_1 * 0.65/3600) * ALFA;
+s.t. tiempoCrawlDos: T_c_2 = (C_c_2 * 0.5/3600 + C_b_2 * 0.6/3600 + C_p_2 * 0.65/3600) * ALFA;
+s.t. tiempoCrawlTres: T_c_3 = (C_c_3 * 0.5/3600 + C_b_3 * 0.6/3600 + C_p_3 * 0.65/3600) * ALFA;
+
+/* Bivalentes de tiempo */
+s.t. tiempoEfiMinUno: T_f_1 >= v * Y_f_1;
+s.t. tiempoEfiMaxUno: T_f_1 <= V * Y_f_1;
+s.t. tiempoEfiMinDos: T_f_2 >= v * Y_f_2;
+s.t. tiempoEfiMaxDos: T_f_2 <= V * Y_f_2;
+s.t. tiempoEfiMinTres: T_f_3 >= v * Y_f_3;
+s.t. tiempoEfiMaxTres: T_f_3 <= V * Y_f_3;
+
+s.t tiempoNormalMinUno: T_n_1 >= v * (1 - Y_f_1);
+s.t tiempoNormalMaxUno: T_n_1 <= V * (1 - Y_f_1);
+s.t tiempoNormalMinDos: T_n_2 >= v * (1 - Y_f_2);
+s.t tiempoNormalMaxDos: T_n_2 <= V * (1 - Y_f_2);
+s.t tiempoNormalMinTres: T_n_3 >= v * (1 - Y_f_3);
+s.t tiempoNormalMaxTres: T_n_3 <= V * (1 - Y_f_3);
+
+s.t. tiempoEfiEstilosUno: T_f_1 = (T_e_1 + T_c_1) * 0.9;
+s.t. tiempoEfiEstilosDos: T_f_2 = (T_e_2 + T_c_2) * 0.9;
+s.t. tiempoEfiEstilosTres: T_f_3 = (T_e_3 + T_c_3) * 0.9;
+
+s.t. tiempoNormalEstiloUno: T_n_1 = T_e_1 + T_c_1;
+s.t. tiempoNormalEstiloDos: T_n_2 = T_e_2 + T_c_2;
+s.t. tiempoNormalEstiloTres: T_n_3 = T_e_3 + T_c_3;
 
 end;
