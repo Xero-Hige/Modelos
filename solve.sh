@@ -1,1 +1,1 @@
-glpsol --math TP1.mod
+glpsol -m modelos.mod -d modelos.dat -o modelos.sol
