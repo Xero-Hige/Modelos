@@ -61,6 +61,15 @@ var Y_s_c_1 >= 0, binary;
 var Y_s_c_2 >= 0, binary;
 var Y_s_c_3 >= 0, binary;
 
+var Y_f_2_c >= 0, binary;
+var Y_f_2_e >= 0, binary;
+var Y_f_3_c >= 0, binary;
+var Y_f_3_e >= 0, binary;
+
+var Y_f_1 >=0, binary;
+var Y_f_2 >=0, binary;
+var Y_f_3 >=0, binary;
+
 var T >= 0;
 var T_1 >= 0;
 var T_2 >= 0;
@@ -225,12 +234,12 @@ s.t. tiempoEfiMaxDos: T_f_2 <= V * Y_f_2;
 s.t. tiempoEfiMinTres: T_f_3 >= v * Y_f_3;
 s.t. tiempoEfiMaxTres: T_f_3 <= V * Y_f_3;
 
-s.t tiempoNormalMinUno: T_n_1 >= v * (1 - Y_f_1);
-s.t tiempoNormalMaxUno: T_n_1 <= V * (1 - Y_f_1);
-s.t tiempoNormalMinDos: T_n_2 >= v * (1 - Y_f_2);
-s.t tiempoNormalMaxDos: T_n_2 <= V * (1 - Y_f_2);
-s.t tiempoNormalMinTres: T_n_3 >= v * (1 - Y_f_3);
-s.t tiempoNormalMaxTres: T_n_3 <= V * (1 - Y_f_3);
+s.t. tiempoNormalMinUno: T_n_1 >= v * (1 - Y_f_1);
+s.t. tiempoNormalMaxUno: T_n_1 <= V * (1 - Y_f_1);
+s.t. tiempoNormalMinDos: T_n_2 >= v * (1 - Y_f_2);
+s.t. tiempoNormalMaxDos: T_n_2 <= V * (1 - Y_f_2);
+s.t. tiempoNormalMinTres: T_n_3 >= v * (1 - Y_f_3);
+s.t. tiempoNormalMaxTres: T_n_3 <= V * (1 - Y_f_3);
 
 s.t. tiempoEfiEstilosUno: T_f_1 = (T_e_1 + T_c_1) * 0.9;
 s.t. tiempoEfiEstilosDos: T_f_2 = (T_e_2 + T_c_2) * 0.9;
