@@ -1,0 +1,5 @@
+# Data Section
+data;
+
+param PORC_MAX_ESPALDA_COMPLETO := 0.7;
+param PORC_MIN_CRAWL_BRAZADA := 0.1;
