@@ -156,4 +156,24 @@ s.t. bivalenteUnicoEstiloUno: Y_s_c_1 + Y_s_e_1 <= 1;
 s.t. bivalenteUnicoEstiloDos: Y_s_c_2 + Y_s_e_2 <= 1;
 s.t. bivalenteUnicoEstiloTres: Y_s_c_3 + Y_s_e_3 <= 1;
 
+/* condicionAumentoEficiencia */
+s.t. aumentoEfiEspaldaCrawlMin: Y_s_e_1 + Y_s_c_2 >= 2 * Y_f_2_c;
+s.t. aumentoEfiEspaldaCrawlMax: Y_s_e_1 + Y_s_c_2 <= 1 + Y_f_2_c;
+s.t. aumentoEfiCrawlEspaldaMin: Y_s_c_1 + Y_s_e_2 >= 2 * Y_f_2_e;
+s.t. aumentoEfiCrawlEspaldaMax: Y_s_c_1 + Y_s_e_2 <= 1 + Y_f_2_e;
+
+s.t. aumentoEfiDosMin: Y_f_2_c + Y_f_2_e >= Y_f_2;
+s.t. aumentoEfiDosMax: Y_f_2_c + Y_f_2_e <= 2 * Y_f_2;
+s.t. bivalenteEfiDos: Y_f_2_c + Y_f_2_e <= 1;
+
+s.t. aumentoEfiEspDosCrawlTresMin: Y_s_e_2 + Y_s_c_3 >= 2 * Y_f_3_c;
+s.t. aumentoEfiEspDosCrawlTresMax: Y_s_e_2 + Y_s_c_3 <= 1 + Y_f_3_c;
+
+s.t. aumentoEfiCrawlDosEspTresMin: Y_s_c_2 + Y_s_e_3 >= 2 * Y_f_3_e;
+s.t. aumentoEfiCrawlDosEspTresMax: Y_s_c_2 + Y_s_e_3 <= 1 + Y_f_3_e;
+
+s.t. aumentoEfiTresMin: Y_f_3_c + Y_f_3_e >= Y_f_3;
+s.t. aumentoEfiTresMax: Y_f_3_c + Y_f_3_e <= 2 * Y_f_3;
+s.t. bivalenteEfiTres: Y_f_3_c + Y_f_3_e <= 1;
+
 end;
