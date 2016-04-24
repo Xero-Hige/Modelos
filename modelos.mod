@@ -2,6 +2,11 @@
 param PORC_MAX_ESPALDA_COMPLETO;
 param PORC_MIN_CRAWL_BRAZADA;
 param ALFA;
+param v;
+param V;
+
+#Las ciudades del viajante
+set INTERVALOS;
 
 /* Declaracion de variables */
 var E >= 0;
@@ -41,6 +46,19 @@ var C_b_3 >= 0;
 var C_p_1 >= 0;
 var C_p_2 >= 0;
 var C_p_3 >= 0;
+
+var Y_e_1 >= 0, binary;
+var Y_e_2 >= 0, binary;
+var Y_e_3 >= 0, binary;
+var Y_c_1 >= 0, binary;
+var Y_c_2 >= 0, binary;
+var Y_c_3 >= 0, binary;
+var Y_s_e_1 >= 0, binary;
+var Y_s_e_2 >= 0, binary;
+var Y_s_e_3 >= 0, binary;
+var Y_s_c_1 >= 0, binary;
+var Y_s_c_2 >= 0, binary;
+var Y_s_c_3 >= 0, binary;
 
 /* Definicion del funcional */
 /*minimize z: T;*/
@@ -97,5 +115,45 @@ s.t. espaldaPatadaPorIntervalo: E_p = (E_p_1 + E_p_2 + E_p_3) * ALFA;
 s.t. crawlCompletoPorIntervalo: C_c = (C_c_1 + C_c_2 + C_c_3) * ALFA;
 s.t. crawlBrazadaPorIntervalo: C_b = (C_b_1 + C_b_2 + C_b_3) * ALFA;
 s.t. crawlPatadaPorIntervalo: C_p = (C_p_1 + C_p_2 + C_p_3) * ALFA;
+
+/* Determinacion de estilos*/
+s.t. detEstilosMinUno: Y_e_1 + Y_c_1 >= 1;
+s.t. detEstilosMaxUno: Y_e_1 + Y_c_1 <= 2;
+s.t. detEstilosMinDos: Y_e_2 + Y_c_2 >= 1;
+s.t. detEstilosMaxDos: Y_e_2 + Y_c_2 <= 2;
+s.t. detEstilosMinTres: Y_e_3 + Y_c_3 >= 1;
+s.t. detEstilosMaxTres: Y_e_3 + Y_c_3 <= 2;
+
+s.t. espaldaBivalenteMinUno: E_1 >= v * Y_e_1;
+s.t. espaldaBivalenteMaxUno: E_1 <= V * Y_e_1;
+s.t. espaldaBivalenteMinDos: E_2 >= v * Y_e_2;
+s.t. espaldaBivalenteMaxDos: E_2 <= V * Y_e_2;
+s.t. espaldaBivalenteMinTres: E_3 >= v * Y_e_3;
+s.t. espaldaBivalenteMaxTres: E_3 <= V * Y_e_3;
+
+s.t. crawlBivalenteMinUno: C_1 >= v * Y_c_1;
+s.t. crawlBivalenteMaxUno: C_1 <= V * Y_c_1;
+s.t. crawlBivalenteMinDos: C_2 >= v * Y_c_2;
+s.t. crawlBivalenteMaxDos: C_2 <= V * Y_c_2;
+s.t. crawlBivalenteMinTres: C_3 >= v * Y_c_3;
+s.t. crawlBivalenteMaxTres: C_3 <= V * Y_c_3;
+
+s.t. espaldaUnicoBivalenteMinUno:  Y_e_1 + (1 - Y_c_1) >= 2 * Y_s_e_1;
+s.t. espaldaUnicoBivalenteMaxUno:  Y_e_1 + (1 - Y_c_1) <= 1 + Y_s_e_1;
+s.t. espaldaUnicoBivalenteMinDos:  Y_e_2 + (1 - Y_c_2) >= 2 * Y_s_e_2;
+s.t. espaldaUnicoBivalenteMaxDos:  Y_e_2 + (1 - Y_c_2) <= 1 + Y_s_e_2;
+s.t. espaldaUnicoBivalenteMinTres:  Y_e_3 + (1 - Y_c_3) >= 2 * Y_s_e_3;
+s.t. espaldaUnicoBivalenteMaxTres:  Y_e_3 + (1 - Y_c_3) <= 1 + Y_s_e_3;
+
+s.t. crawlUnicoBivalenteMinUno:  Y_c_1 + (1 - Y_e_1) >= 2 * Y_s_c_1;
+s.t. crawlUnicoBivalenteMaxUno:  Y_c_1 + (1 - Y_e_1) <= 1 + Y_s_c_1;
+s.t. crawlUnicoBivalenteMinDos:  Y_c_2 + (1 - Y_e_2) >= 2 * Y_s_c_2;
+s.t. crawlUnicoBivalenteMaxDos:  Y_c_2 + (1 - Y_e_2) <= 1 + Y_s_c_2;
+s.t. crawlUnicoBivalenteMinTres:  Y_c_3 + (1 - Y_e_3) >= 2 * Y_s_c_3;
+s.t. crawlUnicoBivalenteMaxTres:  Y_c_3 + (1 - Y_e_3) <= 1 + Y_s_c_3;
+
+s.t. bivalenteUnicoEstiloUno: Y_s_c_1 + Y_s_e_1 <= 1;
+s.t. bivalenteUnicoEstiloDos: Y_s_c_2 + Y_s_e_2 <= 1;
+s.t. bivalenteUnicoEstiloTres: Y_s_c_3 + Y_s_e_3 <= 1;
 
 end;
