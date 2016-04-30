@@ -99,8 +99,8 @@ s.t. metrosMinimosE: E >= 2000;
 s.t. metrosMinimosC: C >= 2 * E;
 
 /* Composicion de cada estilo */
-s.t. composicionEspalda: E = E_c + E_b + E_p;
-s.t. composicionCrawl: C = C_c + C_b + C_p;
+s.t. composicionEspalda: 	E = E_c + E_b + E_p;
+s.t. composicionCrawl:		C = C_c + C_b + C_p;
 
 /* cuota ejercicios */
 s.t. cuotaEspaldaCompleto: E_c <= PORC_MAX_ESPALDA_COMPLETO * E;
@@ -191,9 +191,9 @@ s.t. crawlUnicoBivalenteMaxDos:  Y_c_2 + (1 - Y_e_2) <= 1 + Y_s_c_2;
 s.t. crawlUnicoBivalenteMinTres:  Y_c_3 + (1 - Y_e_3) >= 2 * Y_s_c_3;
 s.t. crawlUnicoBivalenteMaxTres:  Y_c_3 + (1 - Y_e_3) <= 1 + Y_s_c_3;
 
-s.t. bivalenteUnicoEstiloUno: Y_s_c_1 + Y_s_e_1 <= 1;
-s.t. bivalenteUnicoEstiloDos: Y_s_c_2 + Y_s_e_2 <= 1;
-s.t. bivalenteUnicoEstiloTres: Y_s_c_3 + Y_s_e_3 <= 1;
+s.t. bivalenteUnicoEstiloUno: 	Y_s_c_1 + Y_s_e_1 <= 1;
+s.t. bivalenteUnicoEstiloDos: 	Y_s_c_2 + Y_s_e_2 <= 1;
+s.t. bivalenteUnicoEstiloTres: 	Y_s_c_3 + Y_s_e_3 <= 1;
 
 /* condicionAumentoEficiencia Intervalo dos */
 s.t. aumentoEfiEspaldaCrawlMin: Y_s_e_1 + Y_s_c_2 >= 2 * Y_f_2_c;
@@ -202,9 +202,9 @@ s.t. aumentoEfiEspaldaCrawlMax: Y_s_e_1 + Y_s_c_2 <= 1 + Y_f_2_c;
 s.t. aumentoEfiCrawlEspaldaMin: Y_s_c_1 + Y_s_e_2 >= 2 * Y_f_2_e;
 s.t. aumentoEfiCrawlEspaldaMax: Y_s_c_1 + Y_s_e_2 <= 1 + Y_f_2_e;
 
-s.t. aumentoEfiDosMin: Y_f_2_c + Y_f_2_e >= Y_f_2;
-s.t. aumentoEfiDosMax: Y_f_2_c + Y_f_2_e <= 2 * Y_f_2;
-s.t. bivalenteEfiDos: Y_f_2_c + Y_f_2_e <= 1;
+s.t. aumentoEfiDosMin: 	Y_f_2_c + Y_f_2_e >= Y_f_2;
+s.t. aumentoEfiDosMax: 	Y_f_2_c + Y_f_2_e <= 2 * Y_f_2;
+s.t. bivalenteEfiDos: 	Y_f_2_c + Y_f_2_e <= 1;
 
 /* condicionAumentoEficiencia Intervalo tres */
 s.t. aumentoEfiEspDosCrawlTresMin: Y_s_e_2 + Y_s_c_3 >= 2 * Y_f_3_c;
@@ -215,52 +215,57 @@ s.t. aumentoEfiCrawlDosEspTresMax: Y_s_c_2 + Y_s_e_3 <= 1 + Y_f_3_e;
 
 s.t. aumentoEfiTresMin: Y_f_3_c + Y_f_3_e >= Y_f_3;
 s.t. aumentoEfiTresMax: Y_f_3_c + Y_f_3_e <= 2 * Y_f_3;
-s.t. bivalenteEfiTres: Y_f_3_c + Y_f_3_e <= 1;
+s.t. bivalenteEfiTres: 	Y_f_3_c + Y_f_3_e <= 1;
 
 /* Fondos disponibles */
 s.t. presupuestoDiario: T * 500 + OLIMP <= 2000;
 
 /* Tiempo y aumento de eficiencia */
-s.t. tiempoInicial: T_f_1 = 0;
-s.t. tiempoTotalIntervalo: T = T_1 + T_2 + T_3;
+s.t. tiempoEficienciaIntervalo1: 		T_f_1 = 0;
+s.t. posibilidadEficienciaIntervalo1: 	Y_f_1 = 0;
+s.t. tiempoTotalIntervalo: 				T = T_1 + T_2 + T_3;
 
 /* Tiempos por intervalo normal y eficiente */
-s.t. tiempoUnoNormalEficiente: T_1 = T_n_1 + T_f_1;
-s.t. tiempoDosNormalEficiente: T_2 = T_n_2 + T_f_2;
+s.t. tiempoUnoNormalEficiente: 	T_1 = T_n_1;
+s.t. tiempoDosNormalEficiente: 	T_2 = T_n_2 + T_f_2;
 s.t. tiempoTresNormalEficiente: T_3 = T_n_3 + T_f_3;
 
 /* Tiempo espalda por intevalo */
-s.t. tiempoEspaldaUno: T_e_1 = (E_c_1 * 1 + E_b_1 * 1.25 + E_p_1 * 1.3 ) * ALFA/3600;	/*ALFA es la tasa de repeticion. 3600 representa una hora*/
-s.t. tiempoEspaldaDos: T_e_2 = (E_c_2 * 1 + E_b_2 * 1.25 + E_p_2 * 1.3 ) * ALFA/3600;   /*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoEspaldaUno: 	T_e_1 = (E_c_1 * 1 + E_b_1 * 1.25 + E_p_1 * 1.3 ) * ALFA/3600;	/*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoEspaldaDos: 	T_e_2 = (E_c_2 * 1 + E_b_2 * 1.25 + E_p_2 * 1.3 ) * ALFA/3600;  /*ALFA es la tasa de repeticion. 3600 representa una hora*/
 s.t. tiempoEspaldaTres: T_e_3 = (E_c_3 * 1 + E_b_3 * 1.25 + E_p_3 * 1.3 ) * ALFA/3600;  /*ALFA es la tasa de repeticion. 3600 representa una hora*/
                                                                                         
-s.t. tiempoCrawlUno: T_c_1 = (C_c_1 * 0.5 + C_b_1 * 0.6 + C_p_1 * 0.65) * ALFA/3600;    /*ALFA es la tasa de repeticion. 3600 representa una hora*/
-s.t. tiempoCrawlDos: T_c_2 = (C_c_2 * 0.5 + C_b_2 * 0.6 + C_p_2 * 0.65) * ALFA/3600;    /*ALFA es la tasa de repeticion. 3600 representa una hora*/
-s.t. tiempoCrawlTres: T_c_3 = (C_c_3 * 0.5 + C_b_3 * 0.6 + C_p_3 * 0.65) * ALFA/3600;   /*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoCrawlUno: 	T_c_1 = (C_c_1 * 0.5 + C_b_1 * 0.6 + C_p_1 * 0.65) * ALFA/3600; 	/*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoCrawlDos: 	T_c_2 = (C_c_2 * 0.5 + C_b_2 * 0.6 + C_p_2 * 0.65) * ALFA/3600;    	/*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoCrawlTres: 	T_c_3 = (C_c_3 * 0.5 + C_b_3 * 0.6 + C_p_3 * 0.65) * ALFA/3600;   	/*ALFA es la tasa de repeticion. 3600 representa una hora*/
 
 /* Bivalentes de tiempo*/
-s.t. tiempoEfiMinUno: T_f_1 >= v * Y_f_1;
-s.t. tiempoEfiMaxUno: T_f_1 <= V * Y_f_1;
-s.t. tiempoEfiMinDos: T_f_2 >= v * Y_f_2;
-s.t. tiempoEfiMaxDos: T_f_2 <= V * Y_f_2;
-s.t. tiempoEfiMinTres: T_f_3 >= v * Y_f_3;
-s.t. tiempoEfiMaxTres: T_f_3 <= V * Y_f_3;
+s.t. tiempoEfiEstilosDos: 		T_f_2 >= (T_e_2 + T_c_2) * 0.9 - V * (1 - Y_f_2);
+s.t. tiempoEfiEstilosTres: 		T_f_3 >= (T_e_3 + T_c_3) * 0.9 - V * (1 - Y_f_3);
 
-s.t. tiempoNormalMinUno: T_n_1 >= v * (1 - Y_f_1);
-s.t. tiempoNormalMaxUno: T_n_1 <= V * (1 - Y_f_1);
-s.t. tiempoNormalMinDos: T_n_2 >= v * (1 - Y_f_2);
-s.t. tiempoNormalMaxDos: T_n_2 <= V * (1 - Y_f_2);
-s.t. tiempoNormalMinTres: T_n_3 >= v * (1 - Y_f_3);
-s.t. tiempoNormalMaxTres: T_n_3 <= V * (1 - Y_f_3);
+s.t. tiempoNormalEstiloUno: 	T_n_1 = T_e_1 + T_c_1;
+s.t. tiempoNormalEstiloDos: 	T_n_2 >= T_e_2 + T_c_2 - V * Y_f_2;
+s.t. tiempoNormalEstiloTres: 	T_n_3 >= T_e_3 + T_c_3 - V * Y_f_3;
 
-/* ESTA PARTE HACE AL SISTEMA INCOMPATIBLE, el sistema los trata de hacer 0
-s.t. tiempoEfiEstilosUno: T_f_1 = (T_e_1 + T_c_1) * 0.9;
-s.t. tiempoEfiEstilosDos: T_f_2 = (T_e_2 + T_c_2) * 0.9;
-s.t. tiempoEfiEstilosTres: T_f_3 = (T_e_3 + T_c_3) * 0.9;
-   ESTA PARTE HACE AL SISTEMA INCOMPATIBLE */
 
-s.t. tiempoNormalEstiloUno: T_n_1 = T_e_1 + T_c_1;
-s.t. tiempoNormalEstiloDos: T_n_2 = T_e_2 + T_c_2;
-s.t. tiempoNormalEstiloTres: T_n_3 = T_e_3 + T_c_3;
+/* EL PROBLEMA DE LA INCOMPATIBILIDAD ESTABA EN QUE SE ESTABA ESTABLECIENDO UNA IGUALACION
+PARA T_f_? Y AL MISMO TIEMPO IMPONIENDO CONDICIONES DE <= QUE HACIAN QUE LA VARIABLE FUESE INCOMPATIBLE.
+USE ELIMINACION DE RESTRICCIONES PARA RESOLVERLO. */
+/* Bivalentes de tiempo*/
+/*s.t. tiempoEfiMinDos: 	T_f_2 	>= v * Y_f_2;
+s.t. tiempoEfiMaxDos: 	T_f_2 	<= V * Y_f_2;
+s.t. tiempoEfiMinTres: 	T_f_3 	>= v * Y_f_3;
+s.t. tiempoEfiMaxTres: 	T_f_3 	<= V * Y_f_3;*/
+
+/*s.t. tiempoNormalMinDos: 	T_n_2 	>= 	v * (1 - Y_f_2);
+s.t. tiempoNormalMaxDos: 	T_n_2 	<= 	V * (1 - Y_f_2);
+s.t. tiempoNormalMinTres: 	T_n_3 	>= 	v * (1 - Y_f_3);
+s.t. tiempoNormalMaxTres: 	T_n_3 	<= 	V * (1 - Y_f_3);*/
+
+/* ESTA PARTE HACE AL SISTEMA INCOMPATIBLE, el sistema los trata de hacer 0 
+s.t. tiempoEfiEstilosDos: T_f_2 	= (T_e_2 + T_c_2) * 0.9;
+s.t. tiempoEfiEstilosTres: T_f_3 	= (T_e_3 + T_c_3) * 0.9;
+/* ESTA PARTE HACE AL SISTEMA INCOMPATIBLE */
+
 
 end;
