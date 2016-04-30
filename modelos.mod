@@ -10,89 +10,89 @@ param OLIMP;
 set INTERVALOS;
 
 /* Declaracion de variables */
-var E >= 0;
-var E_c >= 0;
-var E_b >= 0;
-var E_p >= 0;
-var C >= 0;
-var C_c >= 0;
-var C_b >= 0;
-var C_p >= 0;
-var M_t >= 0;
-var M_1 >= 0;
-var M_2 >= 0;
-var M_3 >= 0;
-var E_1 >= 0;
-var E_2 >= 0;
-var E_3 >= 0;
-var C_1 >= 0;
-var C_2 >= 0;
-var C_3 >= 0;
-
-var E_c_1 >= 0;
-var E_c_2 >= 0;
-var E_c_3 >= 0;
-var E_b_1 >= 0;
-var E_b_2 >= 0;
-var E_b_3 >= 0;
-var E_p_1 >= 0;
-var E_p_2 >= 0;
-var E_p_3 >= 0;
-var C_c_1 >= 0;
-var C_c_2 >= 0;
-var C_c_3 >= 0;
-var C_b_1 >= 0;
-var C_b_2 >= 0;
-var C_b_3 >= 0;
-var C_p_1 >= 0;
-var C_p_2 >= 0;
-var C_p_3 >= 0;
-
-var Y_e_1 >= 0, binary;
-var Y_e_2 >= 0, binary;
-var Y_e_3 >= 0, binary;
-var Y_c_1 >= 0, binary;
-var Y_c_2 >= 0, binary;
-var Y_c_3 >= 0, binary;
-var Y_s_e_1 >= 0, binary;
-var Y_s_e_2 >= 0, binary;
-var Y_s_e_3 >= 0, binary;
-var Y_s_c_1 >= 0, binary;
-var Y_s_c_2 >= 0, binary;
-var Y_s_c_3 >= 0, binary;
-
-var Y_f_2_c >= 0, binary;
-var Y_f_2_e >= 0, binary;
-var Y_f_3_c >= 0, binary;
-var Y_f_3_e >= 0, binary;
-
-var Y_f_1 >=0, binary;
-var Y_f_2 >=0, binary;
-var Y_f_3 >=0, binary;
-
-var T >= 0;
-var T_1 >= 0;
-var T_2 >= 0;
-var T_3 >= 0;
-
-var T_f_1 >= 0;
-var T_f_2 >= 0;
-var T_f_3 >= 0;
-var T_n_1 >= 0;
-var T_n_2 >= 0;
-var T_n_3 >= 0;
-
-var T_e_1 >= 0;
-var T_e_2 >= 0;
-var T_e_3 >= 0;
-var T_c_1 >= 0;
-var T_c_2 >= 0;
-var T_c_3 >= 0;
+var E >= 0;								/* metros nadados estilo espalda totales */
+var E_c >= 0;							/* Metros ejercitacion espalda, variacion completa */
+var E_b >= 0;                           /* Metros ejercitacion espalda, variacion solo brazada */
+var E_p >= 0;                           /* Metros ejercitacion espalda, variacion solo patada */
+var C >= 0;                             /* metros nadados estilo crawl totales */
+var C_c >= 0;                           /* Metros ejercitacion crawl, variacion completa */
+var C_b >= 0;                           /* Metros ejercitacion crawl, variacion solo brazada */
+var C_p >= 0;                           /* Metros ejercitacion crawl, variacion solo patada */
+var M_t >= 0;                           /* metros nadados totales */
+var M_1 >= 0;                           /* Metros nadados en intervalo 1 */
+var M_2 >= 0;                           /* Metros nadados en intervalo 2 */
+var M_3 >= 0;                           /* Metros nadados en intervalo 3 */
+var E_1 >= 0;                           /* Metros nadados estilo espalda en intervalo 1 */
+var E_2 >= 0;                           /* Metros nadados estilo espalda en intervalo 2 */
+var E_3 >= 0;                           /* Metros nadados estilo espalda en intervalo 3 */
+var C_1 >= 0;                           /* Metros nadados estilo crawl en intervalo 1 */
+var C_2 >= 0;                           /* Metros nadados estilo crawl en intervalo 2 */
+var C_3 >= 0;                           /* Metros nadados estilo crawl en intervalo 3 */
+                                        
+var E_c_1 >= 0;                         /* Metros nadados estilo espalda variacion completa en intervalo 1*/
+var E_c_2 >= 0;                         /* Metros nadados estilo espalda variacion completa en intervalo 2*/
+var E_c_3 >= 0;                         /* Metros nadados estilo espalda variacion completa en intervalo 3*/
+var E_b_1 >= 0;                         /* Metros nadados estilo espalda variacion brazada en intervalo 1*/
+var E_b_2 >= 0;                         /* Metros nadados estilo espalda variacion brazada en intervalo 2*/
+var E_b_3 >= 0;                         /* Metros nadados estilo espalda variacion brazada en intervalo 3*/
+var E_p_1 >= 0;                         /* Metros nadados estilo espalda variacion patada en intervalo 1*/
+var E_p_2 >= 0;                         /* Metros nadados estilo espalda variacion patada en intervalo 2*/
+var E_p_3 >= 0;                         /* Metros nadados estilo espalda variacion patada en intervalo 3*/
+var C_c_1 >= 0;                         /* Metros nadados estilo crawl variacion completa en intervalo 1*/
+var C_c_2 >= 0;                         /* Metros nadados estilo crawl variacion completa en intervalo 2*/
+var C_c_3 >= 0;                         /* Metros nadados estilo crawl variacion completa en intervalo 3*/
+var C_b_1 >= 0;                         /* Metros nadados estilo crawl variacion brazada en intervalo 1*/
+var C_b_2 >= 0;                         /* Metros nadados estilo crawl variacion brazada en intervalo 2*/
+var C_b_3 >= 0;                         /* Metros nadados estilo crawl variacion brazada en intervalo 3*/
+var C_p_1 >= 0;                         /* Metros nadados estilo crawl variacion patada en intervalo 1*/
+var C_p_2 >= 0;                         /* Metros nadados estilo crawl variacion patada en intervalo 2*/
+var C_p_3 >= 0;                         /* Metros nadados estilo crawl variacion patada en intervalo 3*/
+                                        
+var Y_e_1 >= 0, binary;                 /* se nado estilo espalda en el intervalo 1 */
+var Y_e_2 >= 0, binary;                 /* se nado estilo espalda en el intervalo 2 */
+var Y_e_3 >= 0, binary;                 /* se nado estilo espalda en el intervalo 3 */
+var Y_c_1 >= 0, binary;                 /* se nado estilo crawl en el intervalo 1 */
+var Y_c_2 >= 0, binary;                 /* se nado estilo crawl en el intervalo 2 */
+var Y_c_3 >= 0, binary;                 /* se nado estilo crawl en el intervalo 3 */
+var Y_s_e_1 >= 0, binary;               /* se nado unicamente estilo espalda en intervalo 1 */
+var Y_s_e_2 >= 0, binary;               /* se nado unicamente estilo espalda en intervalo 2 */
+var Y_s_e_3 >= 0, binary;               /* se nado unicamente estilo espalda en intervalo 3 */
+var Y_s_c_1 >= 0, binary;               /* se nado unicamente estilo crawl en intervalo 1 */
+var Y_s_c_2 >= 0, binary;               /* se nado unicamente estilo crawl en intervalo 2 */
+var Y_s_c_3 >= 0, binary;               /* se nado unicamente estilo crawl en intervalo 3 */
+                                        
+var Y_f_2_c >= 0, binary;               /* Hay aumento de eficiencia de nado en intervalo 2 por haber nadado primero estilo espalda, luego crawl */
+var Y_f_2_e >= 0, binary;               /* Hay aumento de eficiencia de nado en intervalo 2 por haber nadado primero estilo crawl, luego espalda */
+var Y_f_3_c >= 0, binary;               /* Hay aumento de eficiencia de nado en intervalo 3 por haber nadado primero estilo espalda, luego crawl */
+var Y_f_3_e >= 0, binary;               /* Hay aumento de eficiencia de nado en intervalo 3 por haber nadado primero estilo crawl, luego espalda */
+                                        
+var Y_f_1 >=0, binary;                  /* Hay aumento de eficiencia de nado en intervalo 1 :: DEBERIA SER CERO*/
+var Y_f_2 >=0, binary;                  /* Hay aumento de eficiencia de nado en intervalo 2 */
+var Y_f_3 >=0, binary;                  /* Hay aumento de eficiencia de nado en intervalo 3 */
+                                        
+var T >= 0;                             /* tiempo total de nado */
+var T_1 >= 0;                           /* Tiempo de nado en intervalo 1 */
+var T_2 >= 0;                           /* Tiempo de nado en intervalo 2 */
+var T_3 >= 0;                           /* Tiempo de nado en intervalo 3 */
+                                        
+var T_f_1 >= 0;                         /* Tiempo de nado eficiente en intervalo 1 */
+var T_f_2 >= 0;                         /* Tiempo de nado eficiente en intervalo 2 */
+var T_f_3 >= 0;                         /* Tiempo de nado eficiente en intervalo 3 */
+var T_n_1 >= 0;                         /* Tiempo de nado normal en intervalo 1 */
+var T_n_2 >= 0;                         /* Tiempo de nado normal en intervalo 2 */
+var T_n_3 >= 0;                         /* Tiempo de nado normal en intervalo 3 */
+                                        
+var T_e_1 >= 0;                         /* Tiempo de nado estilo espalda en intervalo 1 */
+var T_e_2 >= 0;                         /* Tiempo de nado estilo espalda en intervalo 2 */
+var T_e_3 >= 0;                         /* Tiempo de nado estilo espalda en intervalo 3 */
+var T_c_1 >= 0;                         /* Tiempo de nado estilo crawl en intervalo 1 */
+var T_c_2 >= 0;                         /* Tiempo de nado estilo crawl en intervalo 2 */
+var T_c_3 >= 0;                         /* Tiempo de nado estilo crawl en intervalo 3 */
 
 /* Definicion del funcional */
 minimize z: T;
 
-/* Restricciones */
+/* Restricciones -------------------------------------------------------------------------- */
 
 /* metros minimos de cada estilo */
 s.t. metrosMinimosE: E >= 2000;
@@ -129,22 +129,22 @@ s.t. espaldaIntervalos: E = E_1 + E_2 + E_3;
 s.t. crawlIntervalos: C = C_1 + C_2 + C_3;
 
 /* Repeticion de ejercicios */
-s.t. espaldaIntervaloUno: E_1 = (E_c_1 + E_p_1 + E_b_1) * ALFA;
-s.t. espaldaIntervaloDos: E_2 = (E_c_2 + E_p_2 + E_b_2) * ALFA;
-s.t. espaldaIntervaloTres: E_3 = (E_c_3 + E_p_3 + E_b_3) * ALFA;
-s.t. crawlIntervaloUno: C_1 = (C_c_1 + C_p_1 + C_b_1) * ALFA;
-s.t. crawlIntervaloDos: C_2 = (C_c_2 + C_p_2 + C_b_2) * ALFA;
-s.t. crawlIntervaloTres: C_3 = (C_c_3 + C_p_3 + C_b_3) * ALFA;
-
-/* Variaciones de Espalda por intervalo*/
-s.t. espaldaCompletoPorIntervalo: E_c = (E_c_1 + E_c_2 + E_c_3) * ALFA;
-s.t. espaldaBrazadaPorIntervalo: E_b = (E_b_1 + E_b_2 + E_b_3) * ALFA;
-s.t. espaldaPatadaPorIntervalo: E_p = (E_p_1 + E_p_2 + E_p_3) * ALFA;
-
-/* Variaciones de Crawl por intervalo*/
-s.t. crawlCompletoPorIntervalo: C_c = (C_c_1 + C_c_2 + C_c_3) * ALFA;
-s.t. crawlBrazadaPorIntervalo: C_b = (C_b_1 + C_b_2 + C_b_3) * ALFA;
-s.t. crawlPatadaPorIntervalo: C_p = (C_p_1 + C_p_2 + C_p_3) * ALFA;
+s.t. espaldaIntervaloUno: E_1 = (E_c_1 + E_p_1 + E_b_1) * ALFA;				/*ALFA es la tasa de repeticion*/
+s.t. espaldaIntervaloDos: E_2 = (E_c_2 + E_p_2 + E_b_2) * ALFA;             /*ALFA es la tasa de repeticion*/
+s.t. espaldaIntervaloTres: E_3 = (E_c_3 + E_p_3 + E_b_3) * ALFA;            /*ALFA es la tasa de repeticion*/
+s.t. crawlIntervaloUno: C_1 = (C_c_1 + C_p_1 + C_b_1) * ALFA;               /*ALFA es la tasa de repeticion*/
+s.t. crawlIntervaloDos: C_2 = (C_c_2 + C_p_2 + C_b_2) * ALFA;               /*ALFA es la tasa de repeticion*/
+s.t. crawlIntervaloTres: C_3 = (C_c_3 + C_p_3 + C_b_3) * ALFA;              /*ALFA es la tasa de repeticion*/
+                                                                            
+/* Variaciones de Espalda por intervalo*/                                   
+s.t. espaldaCompletoPorIntervalo: E_c = (E_c_1 + E_c_2 + E_c_3) * ALFA;     /*ALFA es la tasa de repeticion*/
+s.t. espaldaBrazadaPorIntervalo: E_b = (E_b_1 + E_b_2 + E_b_3) * ALFA;      /*ALFA es la tasa de repeticion*/
+s.t. espaldaPatadaPorIntervalo: E_p = (E_p_1 + E_p_2 + E_p_3) * ALFA;       /*ALFA es la tasa de repeticion*/
+                                                                            
+/* Variaciones de Crawl por intervalo*/                                     
+s.t. crawlCompletoPorIntervalo: C_c = (C_c_1 + C_c_2 + C_c_3) * ALFA;       /*ALFA es la tasa de repeticion*/
+s.t. crawlBrazadaPorIntervalo: C_b = (C_b_1 + C_b_2 + C_b_3) * ALFA;        /*ALFA es la tasa de repeticion*/
+s.t. crawlPatadaPorIntervalo: C_p = (C_p_1 + C_p_2 + C_p_3) * ALFA;         /*ALFA es la tasa de repeticion*/
 
 /* Determinacion de estilos*/
 s.t. detEstilosMinUno: Y_e_1 + Y_c_1 >= 1;
@@ -230,13 +230,13 @@ s.t. tiempoDosNormalEficiente: T_2 = T_n_2 + T_f_2;
 s.t. tiempoTresNormalEficiente: T_3 = T_n_3 + T_f_3;
 
 /* Tiempo espalda por intevalo */
-s.t. tiempoEspaldaUno: T_e_1 = (E_c_1 * 1/3600 + E_b_1 * 1.25/3600 + E_p_1 * 1.3 / 3600 ) * ALFA;
-s.t. tiempoEspaldaDos: T_e_2 = (E_c_2 * 1/3600 + E_b_2 * 1.25/3600 + E_p_2 * 1.3 / 3600 ) * ALFA;
-s.t. tiempoEspaldaTres: T_e_3 = (E_c_3 * 1/3600 + E_b_3 * 1.25/3600 + E_p_3 * 1.3 / 3600 ) * ALFA;
-
-s.t. tiempoCrawlUno: T_c_1 = (C_c_1 * 0.5/3600 + C_b_1 * 0.6/3600 + C_p_1 * 0.65/3600) * ALFA;
-s.t. tiempoCrawlDos: T_c_2 = (C_c_2 * 0.5/3600 + C_b_2 * 0.6/3600 + C_p_2 * 0.65/3600) * ALFA;
-s.t. tiempoCrawlTres: T_c_3 = (C_c_3 * 0.5/3600 + C_b_3 * 0.6/3600 + C_p_3 * 0.65/3600) * ALFA;
+s.t. tiempoEspaldaUno: T_e_1 = (E_c_1 * 1 + E_b_1 * 1.25 + E_p_1 * 1.3 ) * ALFA/3600;	/*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoEspaldaDos: T_e_2 = (E_c_2 * 1 + E_b_2 * 1.25 + E_p_2 * 1.3 ) * ALFA/3600;   /*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoEspaldaTres: T_e_3 = (E_c_3 * 1 + E_b_3 * 1.25 + E_p_3 * 1.3 ) * ALFA/3600;  /*ALFA es la tasa de repeticion. 3600 representa una hora*/
+                                                                                        
+s.t. tiempoCrawlUno: T_c_1 = (C_c_1 * 0.5 + C_b_1 * 0.6 + C_p_1 * 0.65) * ALFA/3600;    /*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoCrawlDos: T_c_2 = (C_c_2 * 0.5 + C_b_2 * 0.6 + C_p_2 * 0.65) * ALFA/3600;    /*ALFA es la tasa de repeticion. 3600 representa una hora*/
+s.t. tiempoCrawlTres: T_c_3 = (C_c_3 * 0.5 + C_b_3 * 0.6 + C_p_3 * 0.65) * ALFA/3600;   /*ALFA es la tasa de repeticion. 3600 representa una hora*/
 
 /* Bivalentes de tiempo*/
 s.t. tiempoEfiMinUno: T_f_1 >= v * Y_f_1;
