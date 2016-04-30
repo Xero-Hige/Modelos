@@ -122,6 +122,7 @@ s.t. metrosEstilosIntervaloTres: M_3 = E_3 + C_3;
 /* metros por intervalos*/
 s.t. metrosIntervaloUnoMinimo: M_1 >= 0.42 * M_t;
 s.t. metrosIntervaloDosMinimo: M_1 + M_2 >= 0.72 * M_t;
+s.t. tercerIntervaloNoNulo: M_3 >= v;
 
 /* Estilos por intervalos*/
 s.t. espaldaIntervalos: E = E_1 + E_2 + E_3;
@@ -147,37 +148,46 @@ s.t. crawlPatadaPorIntervalo: C_p = (C_p_1 + C_p_2 + C_p_3) * ALFA;
 
 /* Determinacion de estilos*/
 s.t. detEstilosMinUno: Y_e_1 + Y_c_1 >= 1;
-s.t. detEstilosMaxUno: Y_e_1 + Y_c_1 <= 2;
 s.t. detEstilosMinDos: Y_e_2 + Y_c_2 >= 1;
-s.t. detEstilosMaxDos: Y_e_2 + Y_c_2 <= 2;
 s.t. detEstilosMinTres: Y_e_3 + Y_c_3 >= 1;
-s.t. detEstilosMaxTres: Y_e_3 + Y_c_3 <= 2;
 
+/* Anulacion de tiempo de espalda por intervalo */
 s.t. espaldaBivalenteMinUno: E_1 >= v * Y_e_1;
 s.t. espaldaBivalenteMaxUno: E_1 <= V * Y_e_1;
+
 s.t. espaldaBivalenteMinDos: E_2 >= v * Y_e_2;
 s.t. espaldaBivalenteMaxDos: E_2 <= V * Y_e_2;
+
 s.t. espaldaBivalenteMinTres: E_3 >= v * Y_e_3;
 s.t. espaldaBivalenteMaxTres: E_3 <= V * Y_e_3;
 
+/* Anulacion de tiempo de crawl por intervalo */
 s.t. crawlBivalenteMinUno: C_1 >= v * Y_c_1;
 s.t. crawlBivalenteMaxUno: C_1 <= V * Y_c_1;
+
 s.t. crawlBivalenteMinDos: C_2 >= v * Y_c_2;
 s.t. crawlBivalenteMaxDos: C_2 <= V * Y_c_2;
+
 s.t. crawlBivalenteMinTres: C_3 >= v * Y_c_3;
 s.t. crawlBivalenteMaxTres: C_3 <= V * Y_c_3;
 
+/* Bivalente unicamente espalda por intervalo */
 s.t. espaldaUnicoBivalenteMinUno:  Y_e_1 + (1 - Y_c_1) >= 2 * Y_s_e_1;
 s.t. espaldaUnicoBivalenteMaxUno:  Y_e_1 + (1 - Y_c_1) <= 1 + Y_s_e_1;
+
 s.t. espaldaUnicoBivalenteMinDos:  Y_e_2 + (1 - Y_c_2) >= 2 * Y_s_e_2;
 s.t. espaldaUnicoBivalenteMaxDos:  Y_e_2 + (1 - Y_c_2) <= 1 + Y_s_e_2;
+
 s.t. espaldaUnicoBivalenteMinTres:  Y_e_3 + (1 - Y_c_3) >= 2 * Y_s_e_3;
 s.t. espaldaUnicoBivalenteMaxTres:  Y_e_3 + (1 - Y_c_3) <= 1 + Y_s_e_3;
 
+/* Bivalente unicamente crawl por intervalo */
 s.t. crawlUnicoBivalenteMinUno:  Y_c_1 + (1 - Y_e_1) >= 2 * Y_s_c_1;
 s.t. crawlUnicoBivalenteMaxUno:  Y_c_1 + (1 - Y_e_1) <= 1 + Y_s_c_1;
+
 s.t. crawlUnicoBivalenteMinDos:  Y_c_2 + (1 - Y_e_2) >= 2 * Y_s_c_2;
 s.t. crawlUnicoBivalenteMaxDos:  Y_c_2 + (1 - Y_e_2) <= 1 + Y_s_c_2;
+
 s.t. crawlUnicoBivalenteMinTres:  Y_c_3 + (1 - Y_e_3) >= 2 * Y_s_c_3;
 s.t. crawlUnicoBivalenteMaxTres:  Y_c_3 + (1 - Y_e_3) <= 1 + Y_s_c_3;
 
@@ -185,9 +195,10 @@ s.t. bivalenteUnicoEstiloUno: Y_s_c_1 + Y_s_e_1 <= 1;
 s.t. bivalenteUnicoEstiloDos: Y_s_c_2 + Y_s_e_2 <= 1;
 s.t. bivalenteUnicoEstiloTres: Y_s_c_3 + Y_s_e_3 <= 1;
 
-/* condicionAumentoEficiencia */
+/* condicionAumentoEficiencia Intervalo dos */
 s.t. aumentoEfiEspaldaCrawlMin: Y_s_e_1 + Y_s_c_2 >= 2 * Y_f_2_c;
 s.t. aumentoEfiEspaldaCrawlMax: Y_s_e_1 + Y_s_c_2 <= 1 + Y_f_2_c;
+
 s.t. aumentoEfiCrawlEspaldaMin: Y_s_c_1 + Y_s_e_2 >= 2 * Y_f_2_e;
 s.t. aumentoEfiCrawlEspaldaMax: Y_s_c_1 + Y_s_e_2 <= 1 + Y_f_2_e;
 
@@ -195,6 +206,7 @@ s.t. aumentoEfiDosMin: Y_f_2_c + Y_f_2_e >= Y_f_2;
 s.t. aumentoEfiDosMax: Y_f_2_c + Y_f_2_e <= 2 * Y_f_2;
 s.t. bivalenteEfiDos: Y_f_2_c + Y_f_2_e <= 1;
 
+/* condicionAumentoEficiencia Intervalo tres */
 s.t. aumentoEfiEspDosCrawlTresMin: Y_s_e_2 + Y_s_c_3 >= 2 * Y_f_3_c;
 s.t. aumentoEfiEspDosCrawlTresMax: Y_s_e_2 + Y_s_c_3 <= 1 + Y_f_3_c;
 
@@ -226,7 +238,7 @@ s.t. tiempoCrawlUno: T_c_1 = (C_c_1 * 0.5/3600 + C_b_1 * 0.6/3600 + C_p_1 * 0.65
 s.t. tiempoCrawlDos: T_c_2 = (C_c_2 * 0.5/3600 + C_b_2 * 0.6/3600 + C_p_2 * 0.65/3600) * ALFA;
 s.t. tiempoCrawlTres: T_c_3 = (C_c_3 * 0.5/3600 + C_b_3 * 0.6/3600 + C_p_3 * 0.65/3600) * ALFA;
 
-/* Bivalentes de tiempo */
+/* Bivalentes de tiempo*/
 s.t. tiempoEfiMinUno: T_f_1 >= v * Y_f_1;
 s.t. tiempoEfiMaxUno: T_f_1 <= V * Y_f_1;
 s.t. tiempoEfiMinDos: T_f_2 >= v * Y_f_2;
@@ -241,9 +253,11 @@ s.t. tiempoNormalMaxDos: T_n_2 <= V * (1 - Y_f_2);
 s.t. tiempoNormalMinTres: T_n_3 >= v * (1 - Y_f_3);
 s.t. tiempoNormalMaxTres: T_n_3 <= V * (1 - Y_f_3);
 
+/* ESTA PARTE HACE AL SISTEMA INCOMPATIBLE, el sistema los trata de hacer 0
 s.t. tiempoEfiEstilosUno: T_f_1 = (T_e_1 + T_c_1) * 0.9;
 s.t. tiempoEfiEstilosDos: T_f_2 = (T_e_2 + T_c_2) * 0.9;
 s.t. tiempoEfiEstilosTres: T_f_3 = (T_e_3 + T_c_3) * 0.9;
+   ESTA PARTE HACE AL SISTEMA INCOMPATIBLE */
 
 s.t. tiempoNormalEstiloUno: T_n_1 = T_e_1 + T_c_1;
 s.t. tiempoNormalEstiloDos: T_n_2 = T_e_2 + T_c_2;
